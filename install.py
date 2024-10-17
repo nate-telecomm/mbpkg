@@ -9,7 +9,7 @@ def root():
             return "termux"
         elif os.getuid() != 0:
             print("[#] This script requires root.")
-            sys.kill(1)
+            sys.exit(1)
 print("Installing MBPKG")
 print(f"[#] OS: {platform.system()}")
 if platform.system() == "Windows":
