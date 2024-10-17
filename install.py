@@ -20,10 +20,10 @@ response = requests.get(f"https://dysprosium-data.github.io/mbpkg/mb.py")
 if response.status_code == 200:
     if platform.system() != "Windows":
         if root() == "termux":
-            open("/data/data/com.termux/files/usr/bin/mb").write(response.text)
+            open("/data/data/com.termux/files/usr/bin/mb", "w").write(response.text)
             os.system("chmod +x /data/data/com.termux/files/usr/bin/mb") 
         else:
-            open("/usr/bin/mb").write(response.text)
+            open("/usr/bin/mb", "w").write(response.text)
             os.system("chmod +x /usr/bin/mb")
     else:
-        open("mb.py").write(response.text)
+        open("mb.py", "w").write(response.text)
