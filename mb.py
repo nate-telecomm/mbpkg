@@ -93,7 +93,7 @@ def install(url, package, installed, hide_output=False):
         print("No package provided")
 def read_conf():
     if platform.system() == "Windows":
-        content = open(f"{user_profile_dir}\\mbconf\\mb.conf", "r").readlines()
+        content = open(f"C:\\Users\{os.getlogin()}\\mbconf\\mb.conf", "r").readlines()
         installed = [line.strip() for line in open(f"{user_profile_dir}\\mbconf\\installed", "r").readlines() if line.strip()]
 
     else:
@@ -232,8 +232,8 @@ ver = 0.3
 shard = {'stable' if opt=='1' else 'unstable'}
 url = https://dysprosium-data.github.io/mbpkg/{'stable' if opt=='1' else 'unstable'}"""
     if platform.system() == "Windows":
-        os.mkdir(f"{user_profile_dir}\\mbconf")
-        os.mkdir(f"{user_profile_dir}\\mbconf\\pkgs")
+        os.mkdir(f"C:\\Users\\{os.getlogin()}\\mbconf")
+        os.mkdir(f"C:\\Users\\{os.getlogin()}\\mbconf\\pkgs")
         with open(f"{user_profile_dir}\\mbconf\\mb.conf", "w") as f:
             f.write(config)
         open(f"{user_profile_dir}\\mbconf\\installed", "w").write("\n")
@@ -250,7 +250,7 @@ def start():
     global home_dir
     global user_profile_dir
     home_dir = Path.home()
-    user_profile_dir = Path('%USERPROFILE%').expanduser()
+    user_profile_dir = f"C:\\Users\\{os.getlogin()}\\"
     if platform.system() == "Windows":
         if os.path.isdir(f"{user_profile_dir}\\mbconf"):
             main()
