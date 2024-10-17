@@ -1,4 +1,5 @@
 ### Molybdenum installer
+import sys
 import os
 import requests
 import platform
