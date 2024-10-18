@@ -3,6 +3,11 @@
 crate:[name="Test crate for this lol", shard="stable"]
 contents = {
   pkg["okay.py"]
-  pkg["funy.py"]
   pkg["DEXTER.py"]
+}
+"DEXTER.py" = {
+  ver = 0.3
+}
+"okay.py" = {
+ver = 0.3
 }

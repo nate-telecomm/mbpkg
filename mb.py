@@ -63,15 +63,14 @@ def install_crate(crate, url, installed):
     name = crate_info.group(1)
     shard = crate_info.group(2)
 
-# Extracting packages
+    # Extracting packages and their versions
     packages = re.findall(r'pkg\["(.+?)"\]', data)
-
-# Storing variables
-    variables = {
-        'name': name,
-        'shard': shard,
-        'packages': packages
-    }
+    versions = {}
+    
+    for pkg in packages:
+        version_match = re.search(rf'"{pkg}" = {{\s*ver = (.+?)\s*}}', data)
+        if version_match:
+            versions[pkg] = version_match.group(1)
 
     print(f'Installing "{name}"')
     for pkg in packages:
@@ -139,6 +138,14 @@ def main():
             print(url)
         elif sys.argv[1] == "ver":
             print(ver)
+        elif sys.argv[1] == "create-crate":
+            with open("crate.mbc", "w") as f:
+                cratecontents = '''crate:[name="Crate", shard="''' + shard.strip() + '''"]
+contents = {
+  ''' + "\n  ".join([f'pkg["{item}"]' for item in installed]) + '''
+}'''
+                f.write(cratecontents)
+            print("Crate created (crate.mbc)")
         elif sys.argv[1] == "install-crate":
             try:
                 install_crate(sys.argv[2], url, installed)
