@@ -1,0 +1,8 @@
+# MOLYBDENUM CRATE
+
+crate:[name="Test crate for this lol", shard="stable"]
+contents = {
+  pkg["okay.py"]
+  pkg["funy.py"]
+  pkg["DEXTER.py"]
+}

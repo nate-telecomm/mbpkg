@@ -11,6 +11,8 @@ import requests
 import inspect
 import threading
 from promethium import col
+import re
+import ast
 
 def check_sudo():
     if platform.system() != "Windows":
@@ -55,6 +57,25 @@ class Loader:
         # handle exceptions with those variables ^
         self.stop()
 
+def install_crate(crate, url, installed):
+    data = open(crate, "r").read()
+    crate_info = re.search(r'crate:\[name="(.+?)", shard="(.+?)"\]', data)
+    name = crate_info.group(1)
+    shard = crate_info.group(2)
+
+# Extracting packages
+    packages = re.findall(r'pkg\["(.+?)"\]', data)
+
+# Storing variables
+    variables = {
+        'name': name,
+        'shard': shard,
+        'packages': packages
+    }
+
+    print(f'Installing "{name}"')
+    for pkg in packages:
+        install(url, pkg, installed)
 def install(url, package, installed, hide_output=False):
     try:
         if hide_output == False:
@@ -91,6 +112,7 @@ def install(url, package, installed, hide_output=False):
 
     except IndexError:
         print("No package provided")
+
 def read_conf():
     if platform.system() == "Windows":
         content = open(f"C:\\Users\\{os.getlogin()}\\mbconf\\mb.conf", "r").readlines()
@@ -117,6 +139,11 @@ def main():
             print(url)
         elif sys.argv[1] == "ver":
             print(ver)
+        elif sys.argv[1] == "install-crate":
+            try:
+                install_crate(sys.argv[2], url, installed)
+            except IndexError:
+                print("No crate provided")
         elif sys.argv[1] == "list-pkg":
             if platform.system() == "Windows":
                 print(open(f"{user_profile_dir}\\mbconf\\installed").read())
