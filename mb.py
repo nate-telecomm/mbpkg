@@ -93,7 +93,7 @@ def install(url, package, installed, hide_output=False):
         print("No package provided")
 def read_conf():
     if platform.system() == "Windows":
-        content = open(f"C:\\Users\{os.getlogin()}\\mbconf\\mb.conf", "r").readlines()
+        content = open(f"C:\\Users\\{os.getlogin()}\\mbconf\\mb.conf", "r").readlines()
         installed = [line.strip() for line in open(f"{user_profile_dir}\\mbconf\\installed", "r").readlines() if line.strip()]
 
     else:
