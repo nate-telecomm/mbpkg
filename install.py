@@ -26,4 +26,4 @@ if response.status_code == 200:
             open("/usr/bin/mb", "w").write(response.text)
             os.system("chmod +x /usr/bin/mb")
     else:
-        open("mb.py", "w").write(response.text)
+        open(f"C:\\Users\\{os.getlogin()}\\mb.py", "w").write(response.text)
