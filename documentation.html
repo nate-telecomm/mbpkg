@@ -8,7 +8,23 @@
   </head>
   <body>
     <h1>Molybdenum PKG Documentation</h1>
-    <h2>Crates:</h2>
-    <p1>Crates are a file (.mbc) that contain data about multiple packages and how to configure them. You can install them with `mb install-crate`. It automates installing a bunch of packages with configs (like if your moving systems). You can run `mb create-crate` to create a crate from your current configs.</p1>
+    <h2>Getting started</h2>
+    <p1>To get started, just run </p1>
+    <a href="https://dysprosium-data.github.io/mbpkg/install.py">the installer.</a>
+    <p2> After that you can begin the setup process.</p2>
+    <h3>Basics</h3>
+    <p3>Running `mb` should tell you enough bud, if you are somehow stupid, heres the basics</p3>
+    <div style="white-space:pre">
+      install [pkg]: Installs a pkg
+      remove [pkg]: Removes a pkg
+      install-crate/create-crate: Refer to "Crates"
+      update: Update all your packages
+      ver: Current version
+      shard-type/change-shard: Refer to "Shards"
+    </div>
+    <h4>Crates</h4>
+    <p4>Crates are a file (.mbc) that contain data about multiple packages and how to configure them. You can install them with `mb install-crate`. It automates installing a bunch of packages with configs (like if your moving systems). You can run `mb create-crate` to create a crate from your current configs.</p4>
+    <h5>Shards</h5>
+    <p5>Shards are places you can download your packages from, there are currently two: `stable` and `unstable`. We are working on custom shards (like if a package is not on the main shards you can download it off another)</p5>
   </body>
 </html>
